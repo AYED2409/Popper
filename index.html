@@ -1,20 +1,38 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Toggle Popover Tutorial</title>
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Popper Tutorial</title>
   </head>
   <body>
-    
-    <section id="popper-section">
-    <button id="popper-button">Toggle Popover</button>
-    <div id="popper-popup">
-      <a href="#">HOME</a>
-      <a href="#">TEAM</a>
-      <a href="#">CONTACT</a>
-      <div id="popper-arrow"></div>
+    <div class="container">
+        <div class="center">
+            <button id="button" aria-describedby="tooltip" class="button"></button>
+            <div id="tooltip" role="tooltip">Sol
+                <div id="arrow" data-popper-arrow></div>
+            </div>
+        </div> 
     </div>
-      
-    </section>
-     <script src="https://unpkg.com/@popperjs/core@2"></script>
-     <script src="./script.js"></script>
+    <div class="container">
+        <div class="center">
+            <button id="popper-button">Clic para info</button>
+            <div id="popper-popup">
+              <h1>PLANETA TIERRA</h1>
+              <ul>
+                <li><h3>Diametro: 12742 km</h3></li>
+                <li><h3>Masa: 5.97 x 1024 kg</h3></li>
+                <li><h3>Distancia al sol: 150 millones de km</h3></li>
+                <li><h3>Periodo de la órbita: 365 días terrestres</h3></li>
+                <li><h3>Velocidad media: 	107208 km/h</h3></li>
+              </ul>
+              
+              <div id="arrow" data-popper-arrow></div>
+        </div>
+        </div>
+        
+    </div>
+    
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="./script.js"></script>
   </body>
+</html>

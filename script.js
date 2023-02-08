@@ -1,13 +1,19 @@
+const button = document.querySelector('#button');
+const tooltip = document.querySelector('#tooltip');
 const popperButton = document.querySelector("#popper-button");
 const popperPopup = document.querySelector("#popper-popup");
-const popperSection = document.querySelector("#popper-section");
-const popperArrow = document.querySelector("#popper-arrow");
-
-let popperInstance = null;
-
-//create popper instance
-function createInstance() {
-  popperInstance = Popper.createPopper(popperButton, popperPopup, {
+const popperInstance = Popper.createPopper(button, tooltip,{
+    placement: 'top',
+    modifiers: [
+        {
+            name: 'offset',
+            options: {
+            offset: [0, 10],
+            },
+        },
+    ],
+});
+var popperInstance2 = Popper.createPopper(popperButton, popperPopup, {
     placement: "auto", //preferred placement of popper
     modifiers: [
       {
@@ -25,40 +31,26 @@ function createInstance() {
       }
     ]
   });
-}
 
-//destroy popper instance
-function destroyInstance() {
-  if (popperInstance) {
-    popperInstance.destroy();
-    popperInstance = null;
+  function showPopper() {
+    popperPopup.setAttribute('data-show', '');
+    popperInstance2.update();
   }
-}
-
-//show and create popper
-function showPopper() {
-  popperPopup.setAttribute("show-popper", "");
-  popperArrow.setAttribute("data-popper-arrow", "");
-  createInstance();
-}
-
-//hide and destroy popper instance
-function hidePopper() {
-  popperPopup.removeAttribute("show-popper");
-  popperArrow.removeAttribute("data-popper-arrow");
-  destroyInstance();
-}
-
-//toggle show-popper attribute on popper to hide or show it with CSS
-function togglePopper() {
-  if (popperPopup.hasAttribute("show-popper")) {
-    hidePopper();
-  } else {
-    showPopper();
+  
+  function hidePopper() {
+    popperPopup.removeAttribute('data-show');
   }
-}
-//execute togglePopper function when clicking the popper reference/button
-popperButton.addEventListener("click", function (e) {
-  e.preventDefault();
-  togglePopper();
-});
+  
+  function togglePopper() {
+    if (popperPopup.hasAttribute("data-show")) {
+      hidePopper();
+      console.log("hide")
+    } else {
+        console.log("show")
+      showPopper();
+    }
+  }
+  popperButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    togglePopper();
+  });

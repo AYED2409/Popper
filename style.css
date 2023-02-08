@@ -1,40 +1,94 @@
-* {
-  box-sizing: border-box;
+body{
+  background-color: black;
+  display: flex;
+  justify-content: center;
+
+}
+.container{
+  flex: 1;
+  height: 160vh;
+  margin-top: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center{
+  margin: 0 auto;
+  height: 400px;
+}
+#button{
+width: 400px;
+height: 400px;
+background-image: url('./img/sol.png');
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+background-color: black;
+}
+#popper-button{
+width: 200px;
+height: 200px;
+background-image: url('./img/tierra.png');
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+background-color: black;
+cursor: pointer;
+}
+button{
+  background-color: blue;
+  color: white;
+  padding: 14px;
+  border-radius: 5px;
+}
+#tooltip{
+  background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 24px;
+  border-radius: 4px;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+#arrow,
+#arrow::before {
+position: absolute;
+width: 8px;
+height: 8px;
+background: inherit;
 }
 
-body {
-  padding: 0;
-  margin: 95vh 0;
-  background-color: gray;
+#arrow {
+visibility: hidden;
 }
-section {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+
+#arrow::before {
+visibility: visible;
+content: '';
+transform: rotate(45deg);
 }
-.title-section {
-  display:block;
-  max-width: 500px;
-  padding: 3%;
-  position: fixed;
-  top: 50%;
-  right: 0;
-  z-index:-1;
+#tooltip[data-popper-placement^='top'] > #arrow,#popper-popup[data-popper-placement^='top'] > #arrow {
+  bottom: -4px;
 }
-button {
-  font: 500 20px lato !important;
-  color: #ffffff;
-  border: none;
-  background: purple;
-  padding: 1em 2em;
+
+#tooltip[data-popper-placement^='bottom'] > #arrow, #popper-popup[data-popper-placement^='bottom'] > #arrow {
+  top: -4px;
 }
-button:hover {
-  cursor:pointer;
+
+#tooltip[data-popper-placement^='left'] > #arrow,#popper-popup[data-popper-placement^='left'] > #arrow  {
+  right: -4px;
 }
+
+#tooltip[data-popper-placement^='right'] > #arrow,#popper-popup[data-popper-placement^='right'] > #arrow {
+  left: -4px;
+}
+
 
 #popper-popup {
   display: none;
-
   background: #333;
   color: white;
   font-weight: bold;
@@ -43,70 +97,8 @@ button:hover {
   border-radius: 4px;
   display: none;
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
 }
-#popper-popup a {
-  font-size: 16px;
-  font-weight: 300;
+#popper-popup[data-show]{
   display: block;
-  padding: 20px;
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-#popper-popup a:hover {
-  background: #444444;
-}
-#popper-popup[data-popper-reference-hidden] {
-  visibility: hidden;
-  pointer-events: none;
-}
-#popper-popup[show-popper] {
-  display: block;
-  z-index: 9999;
-}
-
-/*keep popper visible in the Divi Builder for editing*/
-#et-fb-app #popper-popup {
-  display: block;
-}
-
-/*build the arrow targeting the divider with class 'popper-arrow'*/
-#popper-arrow,
-#popper-arrow::before {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: #333333;
-}
-#popper-arrow {
-  visibility: hidden;
-}
-#popper-arrow::before {
-  visibility: visible;
-  content: "";
-  transform: rotate(45deg);
-}
-
-/*position arrow using popper.js data-popper-placement attribute*/
-#popper-popup[data-popper-placement^="top"] #popper-arrow {
-  bottom: -4px;
-}
-
-#popper-popup[data-popper-placement^="bottom"] #popper-arrow {
-  top: -4px;
-}
-
-#popper-popup[data-popper-placement^="left"] #popper-arrow {
-  right: -4px;
-}
-
-#popper-popup[data-popper-placement^="right"] #popper-arrow {
-  left: -4px;
-}
-
-/*hide arrow when reference outside of viewport*/
-#popper-popup[data-popper-reference-hidden] #popper-arrow::before {
-  visibility: hidden;
 }
